@@ -52,10 +52,6 @@ public class GameManager : MonoBehaviour
             StatesEvents = new StatesEvents();
             StatesManager = new StatesManager();
             TextPickerManager = new TextPickerManager();
-
-            EventsManager.StartListening("OnBeginIn", testBeginInEvent);
-            EventsManager.StartListening("OnBeginOut", testBeginOutEvent);
-            EventsManager.StartListening("OnRunIn", testRunInEvent);
             ObjectPullingManager = new ObjectPullingManager();
             StatesManager.CurrentState = new Begin();
             LevelBuilderManager = new LevelBuilderManager();
