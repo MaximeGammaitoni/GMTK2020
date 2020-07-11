@@ -37,8 +37,15 @@ public class RythmTool : MonoBehaviour
         }
         AS.clip = LevelClip;
         
-        AS.Play();
+       
         debugText.text = "can start";
+
+        while (!Input.GetKeyDown(KeyCode.Space))
+        {
+            yield return 0;
+        }
+        AS.Play();
+        yield return 0;
         while (true)
         {
             timer += Time.deltaTime;
@@ -46,7 +53,6 @@ public class RythmTool : MonoBehaviour
             {
                 debugText.text = timer + "";
                 data.Add(timer);
-                timer = 0;
             }
             else if (Input.GetKeyDown(KeyCode.RightShift))
             {
