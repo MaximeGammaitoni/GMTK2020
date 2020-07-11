@@ -22,6 +22,7 @@ public class TextPickerManager
 
     public GameObject nextWordDisplay;
     public GameObject wordDisplay;
+    public GameObject letterDestroyer;
 
     public TextPickerManager()
     {
@@ -43,6 +44,7 @@ public class TextPickerManager
 
         wordDisplay = GameObject.Find("WordDisplay");
         nextWordDisplay = GameObject.Find("NextWordDisplay");
+        letterDestroyer = GameObject.Find("LetterDestroyer");
 
         currentWord = wordDisplay.GetComponent<Text>();
         nextWord = nextWordDisplay.GetComponent<Text>();
@@ -87,8 +89,14 @@ public class TextPickerManager
 
     }
 
+    public void FragmentWord()
+    {
+        //currentWord.text = currentWord.text.Substring(WordList[currentWordIndex]
+    }
+
     public void RemoveChar()
     {
+        //letterDestroyer. currentWord.text
         currentWord.text= currentWord.text.Remove(0, 1);
 
     }
@@ -96,11 +104,15 @@ public class TextPickerManager
 
     public void ChangeWord()
     {
-        currentCharIndex=0;
-        currentWordIndex++;
-        currentChar = WordList[currentWordIndex].Substring(currentCharIndex, 1);
-        currentWord.text = WordList[currentWordIndex] + " <==";
-        nextWord.text = WordList[currentWordIndex + 1] + "<-";
+        if(currentWordIndex < WordList.Count)
+        {
+            currentCharIndex = 0;
+            currentWordIndex++;
+            currentChar = WordList[currentWordIndex].Substring(currentCharIndex, 1);
+            currentWord.text = WordList[currentWordIndex] + " <==";
+            nextWord.text = WordList[currentWordIndex + 1] + "<-";
+        }
+        
     }
     /*public void inputStore()
     {
