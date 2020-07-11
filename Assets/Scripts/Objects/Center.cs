@@ -9,6 +9,7 @@ public class Center : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
+            other.gameObject.GetComponent<Note>().timer = 0;
             other.gameObject.SetActive(false);
         }
     }

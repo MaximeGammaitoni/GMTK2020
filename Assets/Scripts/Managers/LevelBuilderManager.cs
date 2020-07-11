@@ -54,7 +54,7 @@ public class LevelBuilderManager
             timer += Time.deltaTime;
             if (timer >=  CurrentLevel.Data[indexNote])
             {
-                GameManager.singleton.ObjectPullingManager.Pop(new Vector3(0.7f, -0.185f, 0.974f));
+                GameManager.singleton.ObjectPullingManager.Pop(new Vector3(1, -0.353f, 0.974f));
                 indexNote++;
             }
             
