@@ -5,18 +5,42 @@ using UnityEngine;
 public class Center : MonoBehaviour
 {
     
-    private void OnTriggerStay(Collider other)
+    private bool noteIsIn;
+    private GameObject currentNote;
+    private List<GameObject> notes;
+
+    private void Start()
     {
-        if (Input.anyKeyDown)
-        {        
+        notes = new List<GameObject>();
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        other.gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().color = Color.green;
+        currentNote = other.gameObject;
+        notes.Add(currentNote);
+        noteIsIn = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        notes.Remove(currentNote);
+        noteIsIn = false;
+        other.gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().color = Color.blue;
+    }
+    private void Update()
+    {
+        if (Input.anyKeyDown && noteIsIn)
+        {
             string keyPressed = Input.inputString;
 
             if (Input.inputString == GameManager.singleton.TextPickerManager.currentChar)
             {
-                other.gameObject.GetComponent<Note>().timer = 0;
+
+                currentNote.gameObject.GetComponent<Note>().timer = 0;
                 //GameManager.singleton.TextPickerManager.ColorizeCharGreen();
                 GameManager.singleton.TextPickerManager.GetNextChar();
-                other.gameObject.SetActive(false);
+                currentNote.gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().color = Color.blue;
+                currentNote.gameObject.SetActive(false);
             }
             else
             {

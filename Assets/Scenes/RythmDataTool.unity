@@ -502,7 +502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AS: {fileID: 0}
   RankData: 
-  LevelClip: {fileID: 8300000, guid: 4a12a0232f621f041bf39bec2e967f65, type: 3}
+  LevelClip: {fileID: 8300000, guid: e1542002351a0b6438d653fc141ec98b, type: 3}
   Difficulty: 3
 --- !u!82 &1471846392
 AudioSource:

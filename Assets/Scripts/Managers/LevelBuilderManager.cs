@@ -11,7 +11,7 @@ public class LevelBuilderManager
     public AudioSource AudioSource;
     public AudioClip CurrentClip;
     public static Dictionary<string, Level> LevelsListTemplate { get; set; }
-    public string levelId = "erik-satie-gymnopedie-no1";
+    public string levelId = "Mastering";
     public Level CurrentLevel;
     private string jsonPath = "Levels";
     private float timer = 0f;
@@ -45,6 +45,10 @@ public class LevelBuilderManager
     public IEnumerator Run()
     {
         new WaitForSeconds(1f);
+        while(CurrentClip.loadState != AudioDataLoadState.Loaded)
+        {
+            yield return 0;
+        }
         GameManager.singleton.StatesManager.CurrentState = new Run();
         Debug.Log(CurrentLevel.Data);
         AudioSource.Play();
