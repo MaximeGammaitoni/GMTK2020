@@ -35,7 +35,7 @@ public class Center : MonoBehaviour
 
             if (Input.inputString == GameManager.singleton.TextPickerManager.currentChar)
             {
-
+                GameObject circle = Instantiate(GameManager.singleton.LevelBuilderManager.CirclePrefab, new Vector3(0,0,1),Quaternion.identity);
                 currentNote.gameObject.GetComponent<Note>().timer = 0;
                 //GameManager.singleton.TextPickerManager.ColorizeCharGreen();
                 GameManager.singleton.TextPickerManager.GetNextChar();
