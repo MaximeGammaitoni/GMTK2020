@@ -10,11 +10,14 @@ public class MainMenuStarter : MonoBehaviour
     List<string> StarterTextsContents;
     Image TwinGearsLogo;
     GameObject TitleScreenTextGO;
+    GameObject TitleGO;
     bool canStart=false;
     void Start()
     {
+        TitleGO = GameObject.Find("TitleScreenPanel").transform.Find("Title").gameObject;
         TitleScreenTextGO = GameObject.Find("TitleScreenPanel").transform.Find("Text").gameObject;
         TitleScreenTextGO.SetActive(false);
+        TitleGO.SetActive(false);
         StarterTextsContents = new List<string>();
         StarterTexts = new List<Text>();
         Transform StarterTextsParent = gameObject.transform.Find("Texts");
@@ -47,7 +50,7 @@ public class MainMenuStarter : MonoBehaviour
                 yield return new WaitForSeconds(0.05f);
             }
         }
-
+        yield return new WaitForSeconds(1);
         for (int i = 0; i < StarterTexts.Count; i++)
         {
 
@@ -60,6 +63,7 @@ public class MainMenuStarter : MonoBehaviour
         TwinGearsLogo.CrossFadeAlpha(0, 0.5f, true);
         yield return new WaitForSeconds(0.5f);
         TitleScreenTextGO.SetActive(true);
+        TitleGO.SetActive(true);
         yield return new WaitForSeconds(0.2f);
         canStart = true;
     }

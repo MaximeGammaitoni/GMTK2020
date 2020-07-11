@@ -7,9 +7,9 @@ public class ScaleByTime : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Update());
+        StartCoroutine(Modif());
     }
-    private IEnumerator Update()
+    private IEnumerator Modif()
     {
         Vector3 target = Vector3.one * 0.5f;
         float ratio = 0.00f;
