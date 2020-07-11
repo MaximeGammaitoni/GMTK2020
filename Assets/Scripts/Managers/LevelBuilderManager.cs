@@ -8,6 +8,7 @@ public class LevelBuilderManager
 {
     public GameObject Bar;
     public GameObject NotePrefab;
+    public GameObject CirclePrefab;
     public AudioSource AudioSource;
     public AudioClip CurrentClip;
     public static Dictionary<string, Level> LevelsListTemplate { get; set; }
@@ -20,6 +21,7 @@ public class LevelBuilderManager
     {
         Bar = GameObject.Find("Bar");
         NotePrefab = Resources.Load<GameObject>("Note");
+        CirclePrefab = Resources.Load<GameObject>("Circle");
         AudioSource = GameObject.Find("GameManager").GetComponent<AudioSource>();
         CurrentClip = Resources.Load<AudioClip>("Audio/" + levelId);
         AudioSource.clip = CurrentClip;
