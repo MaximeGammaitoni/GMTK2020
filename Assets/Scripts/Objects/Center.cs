@@ -13,6 +13,7 @@ public class Center : MonoBehaviour
 
             if (Input.inputString == GameManager.singleton.TextPickerManager.currentChar)
             {
+                other.gameObject.GetComponent<Note>().timer = 0;
                 //GameManager.singleton.TextPickerManager.ColorizeCharGreen();
                 GameManager.singleton.TextPickerManager.GetNextChar();
                 other.gameObject.SetActive(false);
