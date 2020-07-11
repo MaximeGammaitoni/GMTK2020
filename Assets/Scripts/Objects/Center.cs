@@ -33,7 +33,7 @@ public class Center : MonoBehaviour
         {
             string keyPressed = Input.inputString;
 
-            if (Input.inputString == GameManager.singleton.TextPickerManager.letterDestroyed.text)
+            if (Input.inputString.ToUpper() == GameManager.singleton.TextPickerManager.letterDestroyed.text)
             {
                 GameObject circle = Instantiate(GameManager.singleton.LevelBuilderManager.CirclePrefab, new Vector3(0,0,1),Quaternion.identity);
                 currentNote.gameObject.GetComponent<Note>().timer = 0;
