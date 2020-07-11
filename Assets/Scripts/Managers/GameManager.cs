@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public ResourcesLoader ResourcesLoader { get; set; }
     [HideInInspector] public ScoreManager ScoreManager { get; set; }
     [HideInInspector] public StatesManager StatesManager { get; set; }
+    [HideInInspector] public TextPickerManager TextPickerManager { get; set; }
 
     public void Awake()
     {
@@ -47,6 +48,8 @@ public class GameManager : MonoBehaviour
             PlayerEvents = new PlayerEvents();
             StatesEvents = new StatesEvents();
             StatesManager = new StatesManager();
+            TextPickerManager = new TextPickerManager();
+
             EventsManager.StartListening("OnBeginIn", testBeginInEvent);
             EventsManager.StartListening("OnBeginOut", testBeginOutEvent);
             EventsManager.StartListening("OnRunIn", testRunInEvent);
