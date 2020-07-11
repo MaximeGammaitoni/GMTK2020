@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public ResourcesLoader ResourcesLoader { get; set; }
     [HideInInspector] public ScoreManager ScoreManager { get; set; }
     [HideInInspector] public StatesManager StatesManager { get; set; }
+    [HideInInspector] public TextPickerManager TextPickerManager { get; set; }
     [HideInInspector] public LevelBuilderManager LevelBuilderManager { get; set; }
     [HideInInspector] public ObjectPullingManager ObjectPullingManager { get; set; }
 
@@ -50,6 +51,11 @@ public class GameManager : MonoBehaviour
             PlayerEvents = new PlayerEvents();
             StatesEvents = new StatesEvents();
             StatesManager = new StatesManager();
+            TextPickerManager = new TextPickerManager();
+
+            EventsManager.StartListening("OnBeginIn", testBeginInEvent);
+            EventsManager.StartListening("OnBeginOut", testBeginOutEvent);
+            EventsManager.StartListening("OnRunIn", testRunInEvent);
             ObjectPullingManager = new ObjectPullingManager();
             StatesManager.CurrentState = new Begin();
             LevelBuilderManager = new LevelBuilderManager();

@@ -8,6 +8,6 @@ public class ScoreManager
     // Start is called before the first frame update
     public ScoreManager()
     {
-        Debug.Log("Score manager created");
+        
     }
 }

@@ -21,7 +21,7 @@ public class StatesEvents
 
         EventsManager.StartListening("OnPauseIn", OnPauseIn);
         EventsManager.StartListening("OnPauseOut", OnPauseOut);
-        Debug.Log(GameManager.singleton.ScoreManager?.MyString);
+        
     }
 
     public  UnityAction<Args> OnBeginIn;
