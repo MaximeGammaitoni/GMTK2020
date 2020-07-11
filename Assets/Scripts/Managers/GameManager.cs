@@ -21,12 +21,15 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public static event GameEventManager GameFixedUpdate;
 
 
+
     // Declare all your service here
     [HideInInspector] public PlayerEvents PlayerEvents { get; set; }
     [HideInInspector] public StatesEvents StatesEvents { get; set; }
     [HideInInspector] public ResourcesLoader ResourcesLoader { get; set; }
     [HideInInspector] public ScoreManager ScoreManager { get; set; }
     [HideInInspector] public StatesManager StatesManager { get; set; }
+    [HideInInspector] public LevelBuilderManager LevelBuilderManager { get; set; }
+    [HideInInspector] public ObjectPullingManager ObjectPullingManager { get; set; }
 
     public void Awake()
     {
@@ -47,10 +50,10 @@ public class GameManager : MonoBehaviour
             PlayerEvents = new PlayerEvents();
             StatesEvents = new StatesEvents();
             StatesManager = new StatesManager();
-            EventsManager.StartListening("OnBeginIn", testBeginInEvent);
-            EventsManager.StartListening("OnBeginOut", testBeginOutEvent);
-            EventsManager.StartListening("OnRunIn", testRunInEvent);
+            ObjectPullingManager = new ObjectPullingManager();
             StatesManager.CurrentState = new Begin();
+            LevelBuilderManager = new LevelBuilderManager();
+
 
         }
         catch (Exception e)
@@ -59,11 +62,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void testBeginInEvent(Args args)
-    {
-        Debug.Log("beginIn");
-        StatesManager.CurrentState = new Run();
-    }
     public void testBeginOutEvent(Args args)
     {
         Debug.Log("beginOut");
