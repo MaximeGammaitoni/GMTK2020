@@ -11,7 +11,7 @@ public class Center : MonoBehaviour
         {        
             string keyPressed = Input.inputString;
 
-            if (Input.inputString == GameManager.singleton.TextPickerManager.currentChar)
+            if (Input.inputString == GameManager.singleton.TextPickerManager.letterDestroyed.text)
             {
                 other.gameObject.GetComponent<Note>().timer = 0;
                 //GameManager.singleton.TextPickerManager.ColorizeCharGreen();
