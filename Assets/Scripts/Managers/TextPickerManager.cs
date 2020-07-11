@@ -39,13 +39,9 @@ public class TextPickerManager
         WordList.Add("sit");
         WordList.Add("amet");
 
-
-
-
         currentWordLength = WordList[currentWordIndex].Length;
         
         currentChar = WordList[currentWordIndex].Substring(currentCharIndex, 1);
-
 
         destroyerPrefab = Resources.Load<GameObject>("LetterDestroyer");
         wordDisplay = GameObject.Find("WordDisplay");
@@ -84,11 +80,14 @@ public class TextPickerManager
             currentChar = WordList[currentWordIndex].Substring(currentCharIndex, 1);
             
         }
-        else if(currentCharIndex == WordList[currentWordIndex].Length - 2)
+        else if(currentCharIndex == WordList[currentWordIndex].Length - 1)//le mot est terminé
         {
             Debug.Log("hat dayum");
-            RemoveChar();
+            GameManager.singleton.StartCoroutine(ZoomInFadeOut(letterDestroyed?.gameObject));
+            //letterDestroyer. currentWord.text
+            letterDestroyed.text = letterDestroyed.text.Remove(0, 1);
             ChangeWord();
+            
         }
 
        
@@ -148,14 +147,19 @@ public class TextPickerManager
 
     public void ChangeWord()
     {
-        if(currentWordIndex < WordList.Count)
+        if(currentWordIndex <= WordList.Count-1)
         {
             currentCharIndex = 0;
-            
+           
             currentWordIndex++;
             currentChar = WordList[currentWordIndex].Substring(currentCharIndex, 1);
             currentWord.text = WordList[currentWordIndex];
-            nextWord.text = WordList[currentWordIndex + 1];
+            if(currentWordIndex+1 <= WordList.Count-1)
+                nextWord.text = WordList[currentWordIndex + 1];
+            else
+            {
+                nextWord.text = string.Empty;
+            }
             InstantiateNewLetterDestroyer();
             FragmentWord();
         }
