@@ -19,7 +19,7 @@ public class MainMenuStarter : MonoBehaviour
     [HideInInspector] public bool musicIsSelected = false;
     void Start()
     {
-        AudioClip MenuMusicClip = Resources.Load<AudioClip>("Audio/O.SAN-Staticfs");
+        AudioClip MenuMusicClip = Resources.Load<AudioClip>("Audio/Staticfs");
         MenuMusic = GameObject.Find("Canvas").GetComponent<AudioSource>();
         MenuMusic.clip = MenuMusicClip;
         MenuMusic.loop = true;
