@@ -47,6 +47,10 @@ public class LifeManager
             life3 = !life3;
             Life3Display.GetComponent<Text>().color = Color.Lerp(Life3Display.GetComponent<Text>().color, Color.red, 1f);
             Life3Display.GetComponentInChildren<Image>().color = Color.Lerp(Life3Display.GetComponentInChildren<Image>().color, new Color(.2f, .2f, .2f, .5f), 1f);
+            
+        }
+        else
+        {
             outOfControlMode = true;
             GameManager.singleton.ScoreManager.StartDecrease();
         }

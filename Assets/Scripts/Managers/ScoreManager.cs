@@ -86,7 +86,7 @@ public class ScoreManager
 
     IEnumerator ScoreDrop()
     {
-        while(scoreValue > -1.0f)
+        while(scoreValue > -1.0f && GameManager.singleton.LifeManager.outOfControlMode)
         {
             scoreValue -= 0.01f;
             scorePanel.text = scoreValue.ToString();

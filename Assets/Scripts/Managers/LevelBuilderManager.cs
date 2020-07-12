@@ -22,7 +22,7 @@ public class LevelBuilderManager
     {
         GameOverPanel = GameObject.Find("GameOverPanel");
         GameOverPanel.SetActive(false);
-    {   
+      
         if(GameManager.NextLevelId == null)
         {
             levelId = "Mastering";
@@ -77,6 +77,6 @@ public class LevelBuilderManager
             
             yield return 0;
         }
-        yield return 0;
+       // yield return 0;
     }
 }
