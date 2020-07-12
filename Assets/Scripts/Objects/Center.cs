@@ -41,12 +41,12 @@ public class Center : MonoBehaviour
                     noteIsIn = false;
                 }
                 GameObject circle = Instantiate(GameManager.singleton.LevelBuilderManager.CirclePrefab, new Vector3(0,0,1),Quaternion.identity);
-                currentNote.gameObject.GetComponent<Note>().timer = 0;
+                notes[notes.Count - 1].gameObject.GetComponent<Note>().timer = 0;
                 //GameManager.singleton.TextPickerManager.ColorizeCharGreen();
                 GameManager.singleton.TextPickerManager.GetNextChar();
-                currentNote.gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().color = Color.blue;
+                notes[notes.Count - 1].gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().color = Color.blue;
                 notes[notes.Count - 1].SetActive(false);
-                
+                notes.Remove(notes[notes.Count - 1]);
                 GameManager.singleton.ScoreManager.isStreaking = true;
                 GameManager.singleton.ScoreManager.ComboCounter();
                 GameManager.singleton.ScoreManager.IncrementScore();
