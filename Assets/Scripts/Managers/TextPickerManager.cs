@@ -146,7 +146,6 @@ public class TextPickerManager
     {
         GameObject newDestroyedLetter = GameObject.Instantiate(destroyerPrefab, Vector3.zero, Quaternion.identity);
         newDestroyedLetter.GetComponent<RectTransform>().position = destroyerOriginTransform.position;
-        Debug.Log("Next letter : "+currentChar);
         newDestroyedLetter.transform.parent = wordPanel.transform;
         newDestroyedLetter.GetComponent<Text>().text = currentChar;
         letterDestroyed = newDestroyedLetter.GetComponent<Text>();

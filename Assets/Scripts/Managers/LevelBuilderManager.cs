@@ -13,7 +13,7 @@ public class LevelBuilderManager
     public AudioSource AudioSource;
     public AudioClip CurrentClip;
     public static Dictionary<string, Level> LevelsListTemplate { get; set; }
-    public string levelId = "Mastering";
+    public string levelId = "";
     public Level CurrentLevel;
     private string jsonPath = "Levels";
     private float timer = 0f;
@@ -22,6 +22,14 @@ public class LevelBuilderManager
     {
         GameOverPanel = GameObject.Find("GameOverPanel");
         GameOverPanel.SetActive(false);
+    {   
+        if(GameManager.NextLevelId == null)
+        {
+            levelId = "Mastering";
+        }
+        else {
+            levelId = GameManager.NextLevelId;
+        }
         Bar = GameObject.Find("Bar");
         NotePrefab = Resources.Load<GameObject>("Note");
         CirclePrefab = Resources.Load<GameObject>("Circle");
@@ -49,7 +57,7 @@ public class LevelBuilderManager
 
     public IEnumerator Run()
     {
-        new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3);
         while(CurrentClip.loadState != AudioDataLoadState.Loaded)
         {
             yield return 0;

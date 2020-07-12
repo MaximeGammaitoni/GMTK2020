@@ -23,8 +23,9 @@ public class Center : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        notes.Remove(currentNote);
-        noteIsIn = false;
+        notes.Remove(notes[0]);
+        if (notes.Count == 0)
+            noteIsIn = false;
         other.gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().color = Color.blue;
         GameManager.singleton.ScoreManager.ComboCounter();
         GameManager.singleton.LifeManager.LooseLife();
@@ -37,12 +38,17 @@ public class Center : MonoBehaviour
 
             if (Input.inputString.ToUpper() == GameManager.singleton.TextPickerManager.letterDestroyed.text)
             {
+                if (notes.Count > 0)
+                {
+                    noteIsIn = false;
+                }
                 GameObject circle = Instantiate(GameManager.singleton.LevelBuilderManager.CirclePrefab, new Vector3(0,0,1),Quaternion.identity);
-                currentNote.gameObject.GetComponent<Note>().timer = 0;
+                notes[notes.Count - 1].gameObject.GetComponent<Note>().timer = 0;
                 //GameManager.singleton.TextPickerManager.ColorizeCharGreen();
                 GameManager.singleton.TextPickerManager.GetNextChar();
-                currentNote.gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().color = Color.blue;
-                currentNote.gameObject.SetActive(false);
+                notes[notes.Count - 1].gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().color = Color.blue;
+                notes[notes.Count - 1].SetActive(false);
+                notes.Remove(notes[notes.Count - 1]);
                 GameManager.singleton.ScoreManager.isStreaking = true;
                 GameManager.singleton.ScoreManager.ComboCounter();
                 GameManager.singleton.ScoreManager.IncrementScore();
@@ -53,7 +59,6 @@ public class Center : MonoBehaviour
             }
             else
             {
-                
                 CameraController.instance.ScreenShake(0.2f, 0.15f);
                 GameManager.singleton.ScoreManager.isStreaking = false;
                 GameManager.singleton.ScoreManager.ComboCounter();
