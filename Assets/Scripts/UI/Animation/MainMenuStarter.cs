@@ -11,10 +11,13 @@ public class MainMenuStarter : MonoBehaviour
     Image TwinGearsLogo;
     GameObject TitleScreenTextGO;
     GameObject TitleGO;
+    GameObject MusicMenu;
     bool canStart=false;
+    [HideInInspector] public bool musicIsSelected = false;
     void Start()
     {
         TitleGO = GameObject.Find("TitleScreenPanel").transform.Find("Title").gameObject;
+        MusicMenu = Resources.Load<GameObject>("MusicMenu");
         TitleScreenTextGO = GameObject.Find("TitleScreenPanel").transform.Find("Text").gameObject;
         TitleScreenTextGO.SetActive(false);
         TitleGO.SetActive(false);
@@ -72,11 +75,23 @@ public class MainMenuStarter : MonoBehaviour
     {
         if (canStart && Input.anyKeyDown)
         {
-            StartCoroutine(NowLoadingC());
+           this.LoadMusicMenu();
+            canStart = false;
+        }
+        if (musicIsSelected)
+        {
+            StartCoroutine(NowLoading());
         }
     }
 
-    IEnumerator NowLoadingC()
+    private void LoadMusicMenu()
+    {
+        GameObject musicMenu = Instantiate(MusicMenu, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        musicMenu.transform.SetParent(GameObject.Find("Canvas").transform, false);
+        TitleScreenTextGO.SetActive(false);
+        TitleGO.SetActive(false);
+    }
+    IEnumerator NowLoading()
     {
         canStart = false;
         yield return new WaitForSeconds(1);
