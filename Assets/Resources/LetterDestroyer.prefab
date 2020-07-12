@@ -95,7 +95,7 @@ MonoBehaviour:
   _OnEnable_PlayAnim: 0
   _AnimationSlots:
   - _LocalSerializedData: 
-    _Preset: {fileID: 11400000, guid: 78fe937c55fced84a85f9bf58587eada, type: 2}
+    _Preset: {fileID: 11400000, guid: fe6113b328839184c843fca93a34ac59, type: 2}
   _OnAnimation_Finished:
     m_PersistentCalls:
       m_Calls:

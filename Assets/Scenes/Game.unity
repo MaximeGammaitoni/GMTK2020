@@ -5701,6 +5701,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8625912113792695035, guid: 54a944e38d0086640bc720cefbc42b74,
+        type: 3}
+      propertyPath: _AnimationSlots.Array.data[0]._Preset
+      value: 
+      objectReference: {fileID: 11400000, guid: fe6113b328839184c843fca93a34ac59,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54a944e38d0086640bc720cefbc42b74, type: 3}
 --- !u!1 &852283351
@@ -5933,7 +5939,7 @@ MonoBehaviour:
   _OnEnable_PlayAnim: 0
   _AnimationSlots:
   - _LocalSerializedData: 
-    _Preset: {fileID: 11400000, guid: 78fe937c55fced84a85f9bf58587eada, type: 2}
+    _Preset: {fileID: 11400000, guid: fe6113b328839184c843fca93a34ac59, type: 2}
   _OnAnimation_Finished:
     m_PersistentCalls:
       m_Calls:

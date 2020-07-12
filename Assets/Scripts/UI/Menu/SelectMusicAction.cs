@@ -9,6 +9,7 @@ public class SelectMusicAction : MonoBehaviour
     // Update is called once per frame
     public void OnClick()
     {
+        GameManager.NextLevelId = gameObject.transform.parent.GetComponent<MusicMenuItems>().levelId;
        GameObject.Find("StarterPanel").GetComponent<MainMenuStarter>().musicIsSelected = true;
     }
 }

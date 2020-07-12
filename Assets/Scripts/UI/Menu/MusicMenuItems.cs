@@ -8,6 +8,7 @@ public class MusicMenuItems : RecyclingListViewItem
     public Text leftTextBottom;
     public Text rightTextTop;
     public Text rightTextBottom;
+    [HideInInspector] public string levelId;
 
     private MusicData childData;
     public MusicData ChildData
@@ -16,7 +17,8 @@ public class MusicMenuItems : RecyclingListViewItem
         set
         {
             childData = value;
-            leftTextTop.text = childData.Title;
+            levelId = childData.Title;
+            leftTextTop.text = childData.Title.ToUpper();
             leftTextBottom.text = childData.Artiste;
             rightTextTop.text = childData.Difficulty;
             rightTextBottom.text = childData.Score;

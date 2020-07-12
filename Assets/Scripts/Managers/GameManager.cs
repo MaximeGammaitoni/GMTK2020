@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public static event GameEventManager GameUpdate;
     [HideInInspector] public static event GameEventManager GameFixedUpdate;
 
-
+    [HideInInspector] public static string NextLevelId;
 
     // Declare all your service here
     [HideInInspector] public PlayerEvents PlayerEvents { get; set; }

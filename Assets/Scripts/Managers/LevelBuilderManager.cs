@@ -12,13 +12,18 @@ public class LevelBuilderManager
     public AudioSource AudioSource;
     public AudioClip CurrentClip;
     public static Dictionary<string, Level> LevelsListTemplate { get; set; }
-    public string levelId = "SlowDown";
+    public string levelId = "";
     public Level CurrentLevel;
     private string jsonPath = "Levels";
     private float timer = 0f;
 
     public LevelBuilderManager()
     {
+        if(GameManager.NextLevelId == string.Empty)
+        {
+            throw new System.Exception("Level id not set");
+        }
+        levelId = GameManager.NextLevelId;
         Bar = GameObject.Find("Bar");
         NotePrefab = Resources.Load<GameObject>("Note");
         CirclePrefab = Resources.Load<GameObject>("Circle");

@@ -46,7 +46,7 @@ public class MusicMenuData : MonoBehaviour
         Dictionary<string, Level> levelList = GetLevelList();
         foreach(KeyValuePair<string, Level> level in levelList)
         {
-            data.Add(new MusicData(level.Value.Name.ToUpper(), level.Value.artistName, level.Value.Difficulty.ToString(), level.Value.Score.ToString()));
+            data.Add(new MusicData(level.Value.Name, level.Value.artistName, level.Value.Difficulty.ToString(), level.Value.Score.ToString()));
         }
     }
 
