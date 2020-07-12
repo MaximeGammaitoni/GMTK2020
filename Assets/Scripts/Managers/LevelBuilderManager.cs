@@ -18,12 +18,14 @@ public class LevelBuilderManager
     private float timer = 0f;
 
     public LevelBuilderManager()
-    {
-        if(GameManager.NextLevelId == string.Empty)
+    {   
+        if(GameManager.NextLevelId == null)
         {
-            throw new System.Exception("Level id not set");
+            levelId = "Mastering";
         }
-        levelId = GameManager.NextLevelId;
+        else {
+            levelId = GameManager.NextLevelId;
+        }
         Bar = GameObject.Find("Bar");
         NotePrefab = Resources.Load<GameObject>("Note");
         CirclePrefab = Resources.Load<GameObject>("Circle");
