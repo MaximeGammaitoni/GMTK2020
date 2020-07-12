@@ -14,7 +14,7 @@ public class PlayerEvents
     {
         OnPlayerDeath += PlayerDeath;
         EventsManager.StartListening("PlayerDeath", OnPlayerDeath);
-        PlayerIsDead();
+        
     }
 
     public UnityAction<Args> OnPlayerDeath;
