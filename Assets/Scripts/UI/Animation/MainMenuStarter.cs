@@ -11,10 +11,22 @@ public class MainMenuStarter : MonoBehaviour
     Image TwinGearsLogo;
     GameObject TitleScreenTextGO;
     GameObject TitleGO;
+    GameObject MusicMenu;
+    AudioSource MenuMusic;
+    float MusicVolumIncremantor = 0.02f;
+    float MusicVolumLimit = 0.3f;
     bool canStart=false;
+    [HideInInspector] public bool musicIsSelected = false;
     void Start()
     {
+        AudioClip MenuMusicClip = Resources.Load<AudioClip>("Audio/O.SAN-Staticfs");
+        MenuMusic = GameObject.Find("Canvas").GetComponent<AudioSource>();
+        MenuMusic.clip = MenuMusicClip;
+        MenuMusic.loop = true;
+        MenuMusic.Play(0);
+        StartCoroutine(StartMusicVolumUpper());
         TitleGO = GameObject.Find("TitleScreenPanel").transform.Find("Title").gameObject;
+        MusicMenu = Resources.Load<GameObject>("MusicMenu");
         TitleScreenTextGO = GameObject.Find("TitleScreenPanel").transform.Find("Text").gameObject;
         TitleScreenTextGO.SetActive(false);
         TitleGO.SetActive(false);
@@ -30,6 +42,17 @@ public class MainMenuStarter : MonoBehaviour
         TwinGearsLogo = transform.Find("TwinGearsLogo").GetComponent<Image>();
 
         StartCoroutine(StartMainMenuCorout());
+    }
+
+    IEnumerator StartMusicVolumUpper()
+    {
+        while (MenuMusic.volume <= MusicVolumLimit)
+        {
+            MenuMusic.volume += MusicVolumIncremantor;
+            yield return new WaitForSeconds(0.5f);
+        }
+        
+        
     }
 
     IEnumerator StartMainMenuCorout()
@@ -72,13 +95,26 @@ public class MainMenuStarter : MonoBehaviour
     {
         if (canStart && Input.anyKeyDown)
         {
-            StartCoroutine(NowLoadingC());
+           this.LoadMusicMenu();
+            canStart = false;
+        }
+        if (musicIsSelected)
+        {
+            StartCoroutine(NowLoading());
         }
     }
 
-    IEnumerator NowLoadingC()
+    private void LoadMusicMenu()
+    {
+        GameObject musicMenu = Instantiate(MusicMenu, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        musicMenu.transform.SetParent(GameObject.Find("Canvas").transform, false);
+        TitleScreenTextGO.SetActive(false);
+        TitleGO.SetActive(false);
+    }
+    IEnumerator NowLoading()
     {
         canStart = false;
+        MenuMusic.Stop();
         yield return new WaitForSeconds(1);
         SceneManager.LoadSceneAsync("Game");
     }
