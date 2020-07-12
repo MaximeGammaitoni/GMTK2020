@@ -41,11 +41,18 @@ public class Center : MonoBehaviour
                 GameManager.singleton.TextPickerManager.GetNextChar();
                 currentNote.gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().color = Color.blue;
                 currentNote.gameObject.SetActive(false);
+                GameManager.singleton.ScoreManager.isStreaking = true;
+                GameManager.singleton.ScoreManager.ComboCounter();
+                GameManager.singleton.ScoreManager.IncrementScore();
+                GameManager.singleton.ScoreManager.MultiplieScore();
+
             }
             else
             {
                 //life -- 
                 CameraController.instance.ScreenShake(0.2f, 0.15f);
+                GameManager.singleton.ScoreManager.isStreaking = false;
+                GameManager.singleton.ScoreManager.ComboCounter();
             }
         }
     }
