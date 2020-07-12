@@ -2,7 +2,7 @@
   "Mastering": {
     "artistName": "O.SAN",
     "Name": "Mastering",
-    "Difficulty": 3,
+    "Difficulty": 2,
     "RankData": [],
     "Duration": 77.2324753,
     "Score": 169.4206,
@@ -91,7 +91,7 @@
   "SlowDown": {
     "artistName": "O.SAN",
     "Name": "SlowDown",
-    "Difficulty": 5,
+    "Difficulty": 8,
     "RankData": [],
     "Duration": 84.03356,
     "Score": 0.0,
