@@ -1,12 +1,17 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using States;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelBuilderManager 
 {
     public GameObject GameOverPanel;
+    public GameObject WinPanel;
     public GameObject Bar;
     public GameObject NotePrefab;
     public GameObject CirclePrefab;
@@ -21,9 +26,12 @@ public class LevelBuilderManager
     public LevelBuilderManager()
     {
         GameOverPanel = GameObject.Find("GameOverPanel");
+        WinPanel = GameObject.Find("WinPanel");
+
         GameOverPanel.SetActive(false);
-    {   
-        if(GameManager.NextLevelId == null)
+        WinPanel.SetActive(false);
+
+        if (GameManager.NextLevelId == null)
         {
             levelId = "Mastering";
         }
@@ -73,10 +81,37 @@ public class LevelBuilderManager
             {
                 GameManager.singleton.ObjectPullingManager.Pop(new Vector3(1, -0.353f, 0.974f));
                 indexNote++;
+                if (indexNote > CurrentLevel.Data.Count -1)
+                {
+                    GameManager.singleton.StartCoroutine(Win());
+                }
             }
             
             yield return 0;
         }
+    }
+
+    IEnumerator Win()
+    {
+
+        if(GameManager.singleton.ScoreManager.scoreValue > CurrentLevel.Score)
+        {
+
+            CurrentLevel.Score = GameManager.singleton.ScoreManager.scoreValue;
+            JObject json = JObject.Parse(JsonConvert.SerializeObject(LevelsListTemplate));
+            Dictionary<string, Level> dic = new Dictionary<string, Level>();
+            dic.Add(GameManager.NextLevelId, CurrentLevel);
+            json.Merge(dic, new JsonMergeSettings
+            {
+                MergeArrayHandling = MergeArrayHandling.Union
+            });
+            File.WriteAllText(Application.dataPath + "/Resources/Levels.json", json.ToString());
+            
+        }
+        WinPanel.SetActive(true);
+        WinPanel.transform.Find("Score").GetComponent<Text>().text = GameManager.singleton.ScoreManager.scoreValue.ToString();
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadSceneAsync("MainMenu");
         yield return 0;
     }
 }
