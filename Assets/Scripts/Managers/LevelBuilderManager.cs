@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class LevelBuilderManager 
 {
+    public GameObject GameOverPanel;
     public GameObject Bar;
     public GameObject NotePrefab;
     public GameObject CirclePrefab;
@@ -18,6 +19,9 @@ public class LevelBuilderManager
     private float timer = 0f;
 
     public LevelBuilderManager()
+    {
+        GameOverPanel = GameObject.Find("GameOverPanel");
+        GameOverPanel.SetActive(false);
     {   
         if(GameManager.NextLevelId == null)
         {

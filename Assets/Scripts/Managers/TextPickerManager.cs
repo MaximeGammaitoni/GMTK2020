@@ -90,7 +90,6 @@ public class TextPickerManager
         }
         else if(currentCharIndex == WordList[currentWordIndex].Length - 1)//le mot est terminé
         {
-            Debug.Log("hat dayum");
             GameManager.singleton.StartCoroutine(ZoomInFadeOut(letterDestroyed?.gameObject));
             //letterDestroyer. currentWord.text
             letterDestroyed.text = letterDestroyed.text.Remove(0, 1);

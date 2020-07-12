@@ -27,6 +27,8 @@ public class Center : MonoBehaviour
         if (notes.Count == 0)
             noteIsIn = false;
         other.gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().color = Color.blue;
+        GameManager.singleton.ScoreManager.ComboCounter();
+        GameManager.singleton.LifeManager.LooseLife();
     }
     private void Update()
     {
@@ -51,15 +53,16 @@ public class Center : MonoBehaviour
                 GameManager.singleton.ScoreManager.ComboCounter();
                 GameManager.singleton.ScoreManager.IncrementScore();
                 GameManager.singleton.ScoreManager.MultiplieScore();
+                if(GameManager.singleton.LifeManager.outOfControlMode)
+                    GameManager.singleton.LifeManager.outOfControlMode = false;
 
             }
             else
             {
-                Debug.Log(Random.Range(0, 100));
-                //life -- 
                 CameraController.instance.ScreenShake(0.2f, 0.15f);
                 GameManager.singleton.ScoreManager.isStreaking = false;
                 GameManager.singleton.ScoreManager.ComboCounter();
+                GameManager.singleton.LifeManager.LooseLife();
             }
         }
     }
