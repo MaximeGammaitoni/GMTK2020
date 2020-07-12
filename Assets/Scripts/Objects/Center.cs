@@ -53,8 +53,12 @@ public class Center : MonoBehaviour
                 GameManager.singleton.ScoreManager.ComboCounter();
                 GameManager.singleton.ScoreManager.IncrementScore();
                 GameManager.singleton.ScoreManager.MultiplieScore();
-                if(GameManager.singleton.LifeManager.outOfControlMode)
+                if (GameManager.singleton.LifeManager.outOfControlMode)
+                {
                     GameManager.singleton.LifeManager.outOfControlMode = false;
+                    GameManager.singleton.LifeManager.GainLife();
+                }
+                    
 
             }
             else
