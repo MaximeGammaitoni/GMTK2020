@@ -14,7 +14,7 @@ public class MainMenuStarter : MonoBehaviour
     GameObject MusicMenu;
     AudioSource MenuMusic;
     float MusicVolumIncremantor = 0.02f;
-    float MusicVolumLimit = 0.3f;
+    float MusicVolumLimit = 0.1f;
     bool canStart=false;
     [HideInInspector] public bool musicIsSelected = false;
     void Start()
