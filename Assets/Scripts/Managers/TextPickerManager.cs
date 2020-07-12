@@ -82,7 +82,6 @@ public class TextPickerManager
         
         if (currentCharIndex < WordList[currentWordIndex].Length - 1)
         {
-            Debug.Log("currentLetterIndex: " + currentCharIndex);
             //Debug.Log("CurrentWordLength: " + WordList[currentWordIndex].Length);
             RemoveChar();
             currentCharIndex++;
@@ -148,7 +147,6 @@ public class TextPickerManager
     {
         GameObject newDestroyedLetter = GameObject.Instantiate(destroyerPrefab, Vector3.zero, Quaternion.identity);
         newDestroyedLetter.GetComponent<RectTransform>().position = destroyerOriginTransform.position;
-        Debug.Log("Next letter : "+currentChar);
         newDestroyedLetter.transform.parent = wordPanel.transform;
         newDestroyedLetter.GetComponent<Text>().text = currentChar;
         letterDestroyed = newDestroyedLetter.GetComponent<Text>();
