@@ -51,8 +51,6 @@ public class MainMenuStarter : MonoBehaviour
             MenuMusic.volume += MusicVolumIncremantor;
             yield return new WaitForSeconds(0.5f);
         }
-        
-        
     }
 
     IEnumerator StartMainMenuCorout()

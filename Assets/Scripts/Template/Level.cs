@@ -9,6 +9,6 @@ public class Level
     public int Difficulty;
     public List<int> RankData;
     public float Duration;
-    public int Score;
+    public float Score;
     public List<float> Data;
 }
