@@ -11,6 +11,7 @@ public class ScoreManager
     public Text comboPanel;
     public string MyString = "COOL";
     public float scoreValue = 0.00f;
+    
 
     public float totalScore = 0f;
 
@@ -73,4 +74,25 @@ public class ScoreManager
         }
         comboPanel.text = "x "+comboCounter.ToString();
     }
+
+    public void StartDecrease()
+    {
+        if (GameManager.singleton.LifeManager.outOfControlMode)
+        {
+            GameManager.singleton.StartCoroutine(ScoreDrop());
+        }
+            
+    }
+
+    IEnumerator ScoreDrop()
+    {
+        while(scoreValue > -1.0f)
+        {
+            scoreValue -= 0.01f;
+            scorePanel.text = scoreValue.ToString();
+            yield return 0;
+        }
+        
+    }
+
 }

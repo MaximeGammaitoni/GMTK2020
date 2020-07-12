@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class LevelBuilderManager 
 {
+    public GameObject GameOverPanel;
     public GameObject Bar;
     public GameObject NotePrefab;
     public GameObject CirclePrefab;
@@ -19,6 +20,8 @@ public class LevelBuilderManager
 
     public LevelBuilderManager()
     {
+        GameOverPanel = GameObject.Find("GameOverPanel");
+        GameOverPanel.SetActive(false);
         Bar = GameObject.Find("Bar");
         NotePrefab = Resources.Load<GameObject>("Note");
         CirclePrefab = Resources.Load<GameObject>("Circle");

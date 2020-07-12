@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public TextPickerManager TextPickerManager { get; set; }
     [HideInInspector] public LevelBuilderManager LevelBuilderManager { get; set; }
     [HideInInspector] public ObjectPullingManager ObjectPullingManager { get; set; }
+    [HideInInspector] public LifeManager LifeManager { get; set; }
 
     public void Awake()
     {
@@ -55,8 +56,7 @@ public class GameManager : MonoBehaviour
             ObjectPullingManager = new ObjectPullingManager();
             StatesManager.CurrentState = new Begin();
             LevelBuilderManager = new LevelBuilderManager();
-
-
+            LifeManager = new LifeManager();
         }
         catch (Exception e)
         {
@@ -91,6 +91,13 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         GameUpdate?.Invoke();
+
+        if((ScoreManager.scoreValue < -1.0f) && (LifeManager.outOfControlMode))
+        {
+            EventsManager.TriggerEvent("PlayerDeath", new PlayerEvents.PlayerDeathArgs { PlayerGo = new GameObject("test") });
+            LifeManager.outOfControlMode = false;
+        }
+
 
     }
 
