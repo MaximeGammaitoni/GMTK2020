@@ -8,10 +8,11 @@ public class LevelBuilderManager
 {
     public GameObject Bar;
     public GameObject NotePrefab;
+    public GameObject CirclePrefab;
     public AudioSource AudioSource;
     public AudioClip CurrentClip;
     public static Dictionary<string, Level> LevelsListTemplate { get; set; }
-    public string levelId = "erik-satie-gymnopedie-no1";
+    public string levelId = "Mastering";
     public Level CurrentLevel;
     private string jsonPath = "Levels";
     private float timer = 0f;
@@ -20,6 +21,7 @@ public class LevelBuilderManager
     {
         Bar = GameObject.Find("Bar");
         NotePrefab = Resources.Load<GameObject>("Note");
+        CirclePrefab = Resources.Load<GameObject>("Circle");
         AudioSource = GameObject.Find("GameManager").GetComponent<AudioSource>();
         CurrentClip = Resources.Load<AudioClip>("Audio/" + levelId);
         AudioSource.clip = CurrentClip;
@@ -45,6 +47,10 @@ public class LevelBuilderManager
     public IEnumerator Run()
     {
         new WaitForSeconds(1f);
+        while(CurrentClip.loadState != AudioDataLoadState.Loaded)
+        {
+            yield return 0;
+        }
         GameManager.singleton.StatesManager.CurrentState = new Run();
         Debug.Log(CurrentLevel.Data);
         AudioSource.Play();
@@ -54,7 +60,7 @@ public class LevelBuilderManager
             timer += Time.deltaTime;
             if (timer >=  CurrentLevel.Data[indexNote])
             {
-                GameManager.singleton.ObjectPullingManager.Pop(new Vector3(0.7f, -0.185f, 0.974f));
+                GameManager.singleton.ObjectPullingManager.Pop(new Vector3(1, -0.353f, 0.974f));
                 indexNote++;
             }
             
